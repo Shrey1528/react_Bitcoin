@@ -1,23 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from "react";
+import BodyContent from "./Components/BodyContent";
+import MainArea from "./Components/MainArea";
+import ScrollToTop from "./Components/ScrollToTop";
+import ScrollReveal from "scrollreveal";
 
 function App() {
+  useEffect(() => {
+    const sr = ScrollReveal({
+      origin: "top",
+      distance: "80px",
+      duration: 2000,
+      reset: false,
+    });
+    sr.reveal(
+      `
+        nav,
+        #home,
+        #about,
+        #faq,
+        #activity,
+        #contact
+        
+    `,
+      {
+        opacity: 0,
+        interval: 200,
+      }
+    );
+  }, []);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ScrollToTop />
+      <MainArea />
+      <BodyContent />
     </div>
   );
 }
